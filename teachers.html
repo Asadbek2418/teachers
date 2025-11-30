@@ -86,23 +86,83 @@
        </div>
        
         <!-- MAIN CONTENT -->
-    <div class="teacher-cards mx-auto xl:pl-[300px]  lg:pl-[300px] md:pl-[300px] sm:pl-[300px] gap-[30px] grid grid-cols-1 xl:grid-cols-4 lg:grid-cols-4 justify-items-center md:grid-cols-2 sm:grid-cols-1 z-0">
-      
-    </div>
-    <div id="outer-modal" class="fixed hidden top-0 z-50 left-0 w-full bg-black/90 flex h-full justify-center items-center">
-        <form id="form" class="max-w-[700px] w-full p-[20px] rounded-[40px] bg-white" action="">
-           <div class="grid grid-cols-2 gap-[20px]">
-            <input  required class="border-[orangered] rounded-[5px] py-[2px] px-[10px] outline-none" placeholder="name" type="text">
-            <input required  class="border-[orangered] rounded-[5px] py-[2px] px-[10px] outline-none" placeholder="experense" type="text">
-            <input required  class="border-[orangered] rounded-[5px] py-[2px] px-[10px] outline-none" placeholder="phone" type="number">
-            <input required  class="border-[orangered] rounded-[5px] py-[2px] px-[10px] outline-none" placeholder="telegram" type="text">
-            <input required  class="border-[orangered] rounded-[5px] py-[2px] px-[10px] outline-none" placeholder="age" type="text">
-            <input required  class="border-[orangered] rounded-[5px] py-[2px] px-[10px] outline-none" placeholder="reting" type="text">
-            <input required  class="border-[orangered] rounded-[5px] py-[2px] px-[10px] outline-none" placeholder="email" type="email">
-            <input required  class="border-[orangered] rounded-[5px] py-[2px] px-[10px] outline-none" placeholder="linkedin" type="text">
-           </div>
-                <button  class="border-[orangered]  text-white bg-[orangered] rounded-[5px] mt-[20px] w-full">Submit</button>
-        </form>
+<main class="p-8">
+    <div>
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h2 class="text-gray-900 dark:text-white mb-2">Teachers</h2>
+                <p class="text-gray-600 dark:text-gray-400">Showing 24 of 24 teachers
+                </p>
+            </div><button id="addteacgerbtn" data-slot="button"
+                class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive text-primary-foreground hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3 gap-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-plus h-5 w-5" aria-hidden="true">
+                    <path d="M5 12h14"></path>
+                    <path d="M12 5v14"></path>
+                </svg>Add Teacher</button>
+        </div>
+        <div class="mb-6 space-y-4">
+            <div class="relative"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-search absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400"
+                    aria-hidden="true">
+                    <path d="m21 21-4.34-4.34"></path>
+                    <circle cx="11" cy="11" r="8"></circle>
+                </svg><input type="text" data-slot="input" id="inputsoch"
+                    class="file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive pl-10 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700"
+                    placeholder="Search teachers by name, email, or profession..." value=""></div>
+            <div class="flex flex-wrap items-center gap-3">
+                <button type="button" role="combobox" aria-controls="radix-:r2c:" aria-expanded="false"
+                    aria-autocomplete="none" dir="ltr" data-state="closed" data-slot="select-trigger"
+                    data-size="default"
+                    class="data-[placeholder]:text-muted-foreground [&amp;_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:hover:bg-input/50 flex items-center justify-between gap-2 rounded-md border px-3 py-2 text-sm whitespace-nowrap transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&amp;_svg]:pointer-events-none [&amp;_svg]:shrink-0 [&amp;_svg:not([class*='size-'])]:size-4 w-[160px] bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700"><span
+                        data-slot="select-value" style="pointer-events: none;">All
+                        Gender</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-chevron-down size-4 opacity-50" aria-hidden="true">
+                        <path d="m6 9 6 6 6-6"></path>
+                    </svg></button>
+                <button type="button" role="combobox" aria-controls="radix-:r2d:" aria-expanded="false"
+                    aria-autocomplete="none" dir="ltr" data-state="closed" data-slot="select-trigger"
+                    data-size="default"
+                    class="data-[placeholder]:text-muted-foreground [&amp;_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:hover:bg-input/50 flex items-center justify-between gap-2 rounded-md border px-3 py-2 text-sm whitespace-nowrap transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&amp;_svg]:pointer-events-none [&amp;_svg]:shrink-0 [&amp;_svg:not([class*='size-'])]:size-4 w-[160px] bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700"><span
+                        data-slot="select-value" style="pointer-events: none;">All
+                        Experience</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-chevron-down size-4 opacity-50" aria-hidden="true">
+                        <path d="m6 9 6 6 6-6"></path>
+                    </svg></button>
+                <button type="button" role="combobox" aria-controls="radix-:r2e:" aria-expanded="false"
+                    aria-autocomplete="none" dir="ltr" data-state="closed" data-slot="select-trigger"
+                    data-size="default"
+                    class="data-[placeholder]:text-muted-foreground [&amp;_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:hover:bg-input/50 flex items-center justify-between gap-2 rounded-md border px-3 py-2 text-sm whitespace-nowrap transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&amp;_svg]:pointer-events-none [&amp;_svg]:shrink-0 [&amp;_svg:not([class*='size-'])]:size-4 w-[160px] bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700"><span
+                        data-slot="select-value" style="pointer-events: none;">All
+                        Rating</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-chevron-down size-4 opacity-50" aria-hidden="true">
+                        <path d="m6 9 6 6 6-6"></path>
+                    </svg></button>
+                <select id="soetName"
+                    class="data-[placeholder]:text-muted-foreground [&amp;_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:hover:bg-input/50 flex items-center justify-between gap-2 rounded-md border px-3 py-2 text-sm whitespace-nowrap transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&amp;_svg]:pointer-events-none [&amp;_svg]:shrink-0 [&amp;_svg:not([class*='size-'])]:size-4 w-[160px] bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+                    <option value="">default</option>
+                    <option value="asc">A-Z</option>
+                    <option value="desc">Z-A</option>
+                </select>
+                <div id="pagin" class="inline-flex rounded-base shadow-xs -space-x-px" role="group">
+
+
+                    <!-- <h1 id="tugadi" class="text-{red} text-[50px]">tugadi </h1> -->
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <div id="Teachersda" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        </div>
     </div>
 <script src="./js/teachers.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>

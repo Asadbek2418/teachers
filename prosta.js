@@ -19,7 +19,7 @@ form.addEventListener("click", function (e) {
 })
 async function getData(content) {
     try {
-        let res = await axios.get("https://6925beea82b59600d725044c.mockapi.io/students")
+        let res = await axios.get("https://6925beea82b59600d725044c.mockapi.io/teachers")
         console.log(res.data);
         content.innerHTML = "";
         res.data.map((el) => {
@@ -27,7 +27,7 @@ async function getData(content) {
                  <div
             class="group max-w-[300px] w-full mt-[90px] hover:-translate-y-1 transition shadow-xl py-[60px] rounded-[20px]  px-[20px]"> <div class="justify-items-center">
            <a class="flex" href = "./single-teachers.html?teacherId=${el.id}"> <img class="rounded-[50%] border border-blue-800 w-[100px]" src=${el.avatar} alt=""></a>
-            <h1 class="mt-[10px]">${el.name}</h1>
+            <h1 class="mt-[10px]">${el.fullName}</h1>
             <div class="flex items-center gap-[30px]">
                 <p class="mt-[10px]">${el.age}</p>
                 <p class="mt-[10px]">${el.experience}</p>
@@ -80,7 +80,7 @@ async function editTeacher(id) {
     outerModal.classList.remove("hidden");
     sellected = id;
     try {
-        let res = await axios.get(`https://6925beea82b59600d725044c.mockapi.io/students/${id}`)
+        let res = await axios.get(`https://6925beea82b59600d725044c.mockapi.io/teachers/${id}`)
         console.log(res.data);
 
         form[0].value = res.data.name
@@ -101,9 +101,9 @@ async function editTeacher(id) {
 async function addteacher(teacherOBJ) {
     try {
         if (sellected) {
-            await axios.put(`https://6925beea82b59600d725044c.mockapi.io/students/${sellected}`, teacherOBJ, outerModal.classList.add("hidden"));
+            await axios.put(`https://6925beea82b59600d725044c.mockapi.io/teachers/${sellected}`, teacherOBJ, outerModal.classList.add("hidden"));
         } else {
-            await axios.post("https://6925beea82b59600d725044c.mockapi.io/students", teacherOBJ, outerModal.classList.add("hidden"));
+            await axios.post("https://6925beea82b59600d725044c.mockapi.io/teachers", teacherOBJ, outerModal.classList.add("hidden"));
         }
         sellected = null;
         getData(teacherCards);
@@ -131,10 +131,122 @@ form.addEventListener("submit", function (e) {
 })
 async function daleteTeacher(id) {
     try {
-        await axios.delete(`https://6925beea82b59600d725044c.mockapi.io/students/${id}`);
+        await axios.delete(`https://6925beea82b59600d725044c.mockapi.io/teachers/${id}`);
         getData(teacherCards);
     } catch (err) {
         console.log(err);
 
     }
 }
+< !DOCTYPE html >
+    <html lang="en">
+
+        <head>
+            <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Document</title>
+                    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+                    <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
+                    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+                </head>
+
+                <body>
+
+                    <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar"
+                        type="button"
+                        class="text-heading bg-transparent box-border border border-transparent hover:bg-neutral-secondary-medium focus:ring-4 focus:ring-neutral-tertiary font-medium leading-5 rounded-base ms-3 mt-3 text-sm p-2 focus:outline-none inline-flex sm:hidden">
+                        <span class="sr-only">Open sidebar</span>
+                        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
+                        </svg>
+                    </button>
+
+
+                    <aside id="logo-sidebar"
+                        class="fixed top-0 left-0 z-50 w-64 h-full bg-white transition-transform border border-gray-300 -translate-x-full sm:translate-x-0"
+                        aria-label="Sidebar">
+                        <div class="h-full px-3 py-4 overflow-y-auto bg-neutral-primary-soft border-e border-default">
+                            <div class="flex items-center gap-3 mb-6">
+                                <div
+                                    class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 to-pink-500 text-white flex items-center justify-center font-bold">
+                                    EA</div>
+                                <div>
+                                    <h1 class="font-semibold text-lg">EduAdmin</h1>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">School Management</p>
+                                </div>
+                            </div>
+                            <ul class="space-y-2 font-medium">
+                                <li>
+                                    <a href="./index.html"
+                                        class="flex items-center px-4 py-3 text-body rounded-lg hover:bg-gray-200  hover:text-fg-brand group">
+                                        <svg class="w-5 h-5 transition duration-75 group-hover:text-fg-brand" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z" />
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M13.5 3c-.169 0-.334.014-.5.025V11h7.975c.011-.166.025-.331.025-.5A7.5 7.5 0 0 0 13.5 3Z" />
+                                        </svg>
+
+                                        <span class="ms-3">Dashboard</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a id="teachersLink2" href="./teachers.html"
+                                        class="flex items-center gap-3 px-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow py-3 rounded-lg  hover:bg-gray-200">
+                                        👨‍🏫 Teachers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="./students.html"
+                                        class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">
+                                        🎓 Students
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="./settings.html"
+                                        class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">
+                                        ⚙ Settings
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </aside>
+                    <header
+                        class="fixed top-0 left-[40px] w-full xl:ml-[236px] lg:ml-[236px] mg:ml-[236px] sm:ml-[236px] px-[30px] py-[15px] bg-white z-1">
+                        <h1 class="text-2xl font-semibold">School Management System</h1>
+                    </header>
+                    <div class="flex items-center justify-between px-[30px] py-[80px]">
+                        <h1 class="sm:ml-[275px] text-xl">Teachers</h1>
+
+                        <button id="add-teacher-btn"
+                            class="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-[10px] h-[30px] h-[40px] rounded-[20px]">
+                            <span class="text-2xl">+</span> Add Teacher</button>
+                    </div>
+
+                    <!-- MAIN CONTENT -->
+                    <div class="teacher-cards mx-auto xl:pl-[300px]  lg:pl-[300px] md:pl-[300px] sm:pl-[300px] gap-[30px] grid grid-cols-1 xl:grid-cols-4 lg:grid-cols-4 justify-items-center md:grid-cols-2 sm:grid-cols-1 z-0">
+
+                    </div>
+                    <div id="outer-modal" class="fixed hidden top-0 z-50 left-0 w-full bg-black/90 flex h-full justify-center items-center">
+                        <form id="form" class="max-w-[700px] w-full p-[20px] rounded-[40px] bg-white" action="">
+                            <div class="grid grid-cols-2 gap-[20px]">
+                                <input required class="border-[orangered] rounded-[5px] py-[2px] px-[10px] outline-none" placeholder="name" type="text">
+                                    <input required class="border-[orangered] rounded-[5px] py-[2px] px-[10px] outline-none" placeholder="experense" type="text">
+                                        <input required class="border-[orangered] rounded-[5px] py-[2px] px-[10px] outline-none" placeholder="phone" type="number">
+                                            <input required class="border-[orangered] rounded-[5px] py-[2px] px-[10px] outline-none" placeholder="telegram" type="text">
+                                                <input required class="border-[orangered] rounded-[5px] py-[2px] px-[10px] outline-none" placeholder="age" type="text">
+                                                    <input required class="border-[orangered] rounded-[5px] py-[2px] px-[10px] outline-none" placeholder="reting" type="text">
+                                                        <input required class="border-[orangered] rounded-[5px] py-[2px] px-[10px] outline-none" placeholder="email" type="email">
+                                                            <input required class="border-[orangered] rounded-[5px] py-[2px] px-[10px] outline-none" placeholder="linkedin" type="text">
+                                                            </div>
+                                                            <button class="border-[orangered]  text-white bg-[orangered] rounded-[5px] mt-[20px] w-full">Submit</button>
+                                                        </form>
+                                                    </div>
+                                                    <script src="./js/teachers.js"></script>
+                                                    <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
+
+                                                </body>
+
+                                            </html>

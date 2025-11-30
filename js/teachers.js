@@ -1,140 +1,292 @@
-let teacherCards = document.querySelector(".teacher-cards")
-let outerModal = document.getElementById("outer-modal")
-let addTeacherBtn = document.getElementById("add-teacher-btn");
-let form = document.getElementById("form")
-let sellected = null ;
+let Teachersda = document.getElementById("Teachersda");
+let fors = document.getElementById("forms");
+let outerModal = document.getElementById("outer-modal");
+let addTeacgerBtn = document.getElementById("addteacgerbtn");
+let selected = null
+let pagin = document.getElementById("pagin")
+let page = 1
+let inputsoch = document.getElementById("inputsoch")
+let soetName = document.getElementById("soetName")
+let soetNameValue = "default"
+let searchValue = ""
 
-addTeacherBtn.addEventListener("click" , function(){
-    outerModal.classList.remove("hidden");
-    for(let el of form){
+inputsoch.addEventListener("input", function (e) {
+
+    searchValue = e.target.value
+    getdadt(Teachersda, page, soetNameValue, searchValue);
+})
+soetName.addEventListener("click", function (e) {
+    console.log(e.target.value);
+    soetNameValue = e.target.value
+    getdadt(Teachersda, page, soetNameValue, searchValue);
+})
+addTeacgerBtn.addEventListener("click", function () {
+    outerModal.classList.remove("hidden")
+    for (let el of fors) {
         el.value = "";
+
     }
 })
-outerModal.addEventListener("click" , function(){
-    outerModal.classList.add("hidden");
-    sellected = null;
+outerModal.addEventListener("click", function () {
+    outerModal.classList.add("hidden")
+    selected = null
 })
-form.addEventListener("click" , function(e){
-e.stopPropagation();
+fors.addEventListener("click", function (i) {
+    i.stopPropagation()
 })
-async function getData(content) {
-    try{
-        let res = await axios.get("https://6925beea82b59600d725044c.mockapi.io/teachers")
-        console.log(res.data);
+async function getdadt(content, page, soetNameValue, searchValue) {
+
+
+    try {
+        let res = await axios.get(`https://6923dd633ad095fb8471ce98.mockapi.io/Teachers?page=${page}&limit=6&${soetNameValue === "default" ? "" : `sortBy=name&order=${soetNameValue}`}&search=${searchValue} `);
         content.innerHTML = "";
         res.data.map((el) => {
             content.innerHTML += `
-                 <div
-            class="group max-w-[300px] w-full mt-[90px] hover:-translate-y-1 transition shadow-xl py-[60px] rounded-[20px]  px-[20px]"> <div class="justify-items-center">
-           <a class="flex" href = "./single-teachers.html?teacherId=${el.id}"> <img class="rounded-[50%] border border-blue-800 w-[100px]" src=${el.avatar} alt=""></a>
-            <h1 class="mt-[10px]">${el.fullName}</h1>
-            <div class="flex items-center gap-[30px]">
-                <p class="mt-[10px]">${el.age}</p>
-                <p class="mt-[10px]">${el.experience}</p>
-            </div>
-            <p class="mt-[10px]">${el.rating}</p>
-        </div>
+        <div data-slot="card"
+            class="text-card-foreground flex flex-col gap-6 rounded-xl border p-6 cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 group">
+                                                <a href="./Teacher.html?teacherId=${el.id}"> <div class="flex flex-col items-center text-center mb-4"><span
+                                                        data-slot="avatar"
+                                                        class="relative flex size-10 shrink-0 overflow-hidden rounded-full h-20 w-20 mb-3 ring-4 ring-blue-100 dark:ring-blue-900"><img
+                                                            data-slot="avatar-image" class="aspect-square size-full"
+                                                            alt="Louis Bailey"
+                                                            src=${el.avatar}></span>
+                                                    <h3 class="text-gray-900 dark:text-white mb-1">${el.name}</h3>
+                                                    <span data-slot="badge"
+                                                        class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&amp;>svg]:size-3 gap-1 [&amp;>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent bg-secondary text-secondary-foreground [a&amp;]:hover:bg-secondary/90 mb-2">${el.specialty}</span>
+                                                    <div
+                                                        class="flex items-center gap-4 text-gray-600 dark:text-gray-400 mb-3">
+                                                        <span class="flex items-center gap-1"><svg
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="lucide lucide-briefcase h-4 w-4"
+                                                                aria-hidden="true">
+                                                                <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16">
+                                                                </path>
+                                                                <rect width="20" height="14" x="2" y="6" rx="2"></rect>
+                                                            </svg>${el.Experience}</span><span class="flex items-center gap-1"><svg
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="lucide lucide-users h-4 w-4" aria-hidden="true">
+                                                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2">
+                                                                </path>
+                                                                <path d="M16 3.128a4 4 0 0 1 0 7.744"></path>
+                                                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                                                <circle cx="9" cy="7" r="4"></circle>
+                                                            </svg>${el.age}</span></div>
+                                                    <div class="flex items-center gap-1 mb-4"><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            class="lucide lucide-star h-4 w-4 fill-yellow-400 text-yellow-400"
+                                                            aria-hidden="true">
+                                                            <path
+                                                                d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z">
+                                                            </path>
+                                                        </svg><span class="text-gray-900 dark:text-white">${el.Rating}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="space-y-2 mb-4">
+                                                    <div
+                                                        class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            class="lucide lucide-phone h-4 w-4 flex-shrink-0 text-blue-500"
+                                                            aria-hidden="true">
+                                                            <path
+                                                                d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384">
+                                                            </path>
+                                                        </svg><span class="truncate">${el.Phone}</span></div>
+                                                    <div
+                                                        class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            class="lucide lucide-mail h-4 w-4 flex-shrink-0 text-green-500"
+                                                            aria-hidden="true">
+                                                            <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path>
+                                                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                                        </svg><span class="truncate">${el.Email}</span></div>
+                                                    <div
+                                                        class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            class="lucide lucide-send h-4 w-4 flex-shrink-0 text-blue-400"
+                                                            aria-hidden="true">
+                                                            <path
+                                                                d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z">
+                                                            </path>
+                                                            <path d="m21.854 2.147-10.94 10.939"></path>
+                                                        </svg><span class="truncate">${el.Telegram}</span></div>
+                                                    <div
+                                                        class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            class="lucide lucide-linkedin h-4 w-4 flex-shrink-0 text-blue-600"
+                                                            aria-hidden="true">
+                                                            <path
+                                                                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                                            </path>
+                                                            <rect width="4" height="12" x="2" y="9"></rect>
+                                                            <circle cx="4" cy="4" r="2"></circle>
+                                                        </svg><span class="truncate">${el.LinkedIn}</span>
+                                                    </div>
+                                                </div>
+                                                </a>
+                                                <div 
+                                                    class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                                    <button data-slot="button" onClick = "editTeacher(${el.id})"
+                                                        class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border bg-background text-foreground hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 flex-1 gap-2"><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" class="lucide lucide-pencil h-4 w-4"
+                                                            aria-hidden="true">
+                                                            <path
+                                                                d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z">
+                                                            </path>
+                                                            <path d="m15 5 4 4"></path>
+                                                        </svg>Edit</button><button onClick="delTechBtn(${el.id})" data-slot="button"
+                                                        class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border bg-background dark:bg-input/30 dark:border-input h-8 rounded-md px-3 has-[>svg]:px-2.5 flex-1 gap-2 text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950"><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            class="lucide lucide-trash2 lucide-trash-2 h-4 w-4"
+                                                            aria-hidden="true">
+                                                            <path d="M10 11v6"></path>
+                                                            <path d="M14 11v6"></path>
+                                                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path>
+                                                            <path d="M3 6h18"></path>
+                                                            <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                        </svg>Delete</button>
+                                                        </div>
+                                            </div> 
+        ` ;
+        })
+        let resss = await axios.get("https://6923dd633ad095fb8471ce98.mockapi.io/Teachers");
+        let pejis = Math.ceil(resss.data.length / 6)
+        pagin.innerHTML = ``
+        pagin.innerHTML += `<button type="button" onClick=changePage(${page - 1})  class="inline-flex items-center justify-center text-body bg-neutral-primary-soft border border-default hover:bg-neutral-secondary-medium hover:text-heading focus:ring-3 focus:ring-neutral-tertiary-soft font-medium leading-5 rounded-s-base text-sm w-9 h-9 focus:outline-none rounded-l-lg">
+                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 19-7-7 7-7"/></svg>
+                            </button> `;
+        for (let i = 1; i <= pejis; i++) {
+            pagin.innerHTML += `<button  onClick=changePage(${i}) type="button" class="inline-flex items-center justify-center text-body bg-neutral-primary-soft border border-default hover:bg-neutral-secondary-medium hover:text-heading focus:ring-3 focus:ring-neutral-tertiary-soft font-medium leading-5 text-sm w-9 h-9 focus:outline-none">${i}</button> `
+        };
+        pagin.innerHTML += `   <button type="button" onClick=changePage(${page + 1})  class="inline-flex items-center justify-center text-body bg-neutral-primary-soft border border-default hover:bg-neutral-secondary-medium hover:text-heading focus:ring-3 focus:ring-neutral-tertiary-soft font-medium leading-5 rounded-e-base text-sm w-9 h-9 focus:outline-none rounded-r-lg">
+                                                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" 
+                                                    viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" 
+                                                    stroke-width="2" d="m9 5 7 7-7 7"/></svg>
+                                                        </button> `;
 
-        <div class="py-[40px]">
-            <div class=" py-[5px] flex items-center gap-[10px]">
-                <img width="20px"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8cBg8KyVEGp0UK2fc8uhaWJLLNht36bwe5A&s"
-                    alt="">
-                <p>${el.phone}</p>
-            </div>
-            <div class=" py-[5px] flex items-center gap-[10px]">
-                <img width="20px"
-                    src="data:image/jpeg;base64,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"
-                    alt="">
-                <p>${el.email}</p>
-            </div>
-            <div class=" py-[5px] flex items-center gap-[10px]">
-                <img width="20px"
-                    src="data:image/jpeg;base64,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"
-                    alt="">
-                <p>${el.telegram}</p>
-            </div>
-            <div class=" py-[5px] flex items-center gap-[10px]">
-                <img width="20px"
-                    src="data:image/png;base64,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"
-                    alt="">
-                <p>${el.linkedin}</p>
-            </div>
-        </div>
-        <div class=" opacity-0 group-hover:opacity-100 transition flex gap-[15px] items-center justify-between">
-            <button onClick= "editTeacher(${el.id})"
-                class="max-w-[120px] w-full py-[2px] border border-blue-200 shadow-xl rounded-[10px]  hover:bg-blue-300 ">edit</button>
-            <button onClick = "daleteTeacher(${el.id})"
-                class="max-w-[120px] w-full py-[2px] border border-red-200 shadow-xl rounded-[10px]  hover:bg-red-300">Dalete</button>
-        </div></div>
-            `;
-        } );
-    }catch(err){
+        pejis
+    } catch (err) {
         console.log(err);
-        
+
     }
+
+
 }
-getData(teacherCards);
+getdadt(Teachersda, page, soetNameValue, searchValue)
+async function changePage(i) {
+    let resss = await axios.get("https://6923dd633ad095fb8471ce98.mockapi.io/Teachers");
+    let pejis = Math.ceil(resss.data.length / 6);
 
- async function editTeacher(id){
-    outerModal.classList.remove("hidden");
-    sellected = id ;
-    try{
-        let res = await axios.get(`https://6925beea82b59600d725044c.mockapi.io/teachers/${id}`)
-        console.log(res.data);
 
-        form[0].value = res.data.name
-        form[1].value = res.data.experience
-        form[2].value = res.data.phone
-        form[3].value = res.data.telegram
-        form[4].value = res.data.age
-        form[5].value = res.data.rating
-        form[6].value = res.data.email
-        form[7].value = res.data.linkedin
-        
-    }catch(err){
-        console.log(err);
-        
+    if (i > 0 && i <= pejis) {
+        getdadt(Teachersda, i);
+    } else {
+        console.log("bfglbf");
+
     }
+
 }
 
-async function addteacher(teacherOBJ) {
-    try{
-        if(sellected){
-            await axios.put(`https://6925beea82b59600d725044c.mockapi.io/teachers/${sellected}`, teacherOBJ, outerModal.classList.add("hidden"));
-        }else{
-            await axios.post("https://6925beea82b59600d725044c.mockapi.io/teachers", teacherOBJ, outerModal.classList.add("hidden"));
+
+async function addTeacher(params) {
+    try {
+        if (selected) {
+            await axios.put(`https://6923dd633ad095fb8471ce98.mockapi.io/Teachers/${selected}`, params,
+            );
+
+        } else {
+            await axios.post("https://6923dd633ad095fb8471ce98.mockapi.io/Teachers", params,
+            );
+
         }
-       sellected = null ;
-        getData(teacherCards);
-    }catch(err){
+        outerModal.classList.add("hidden")
+        selected = null
+        getdadt(Teachersda, page);
+    } catch (err) {
         console.log(err);
-        
-    }
-}
-form.addEventListener("submit" , function(e){
+
+    };
+
+};
+
+fors.addEventListener("submit", function (e) {
     e.preventDefault();
-    let teacherOBJ = {};
-    teacherOBJ.fullName = form[0].value;
-    teacherOBJ.experience = form[1].value;
-    teacherOBJ.phone = form[2].value;
-    teacherOBJ.telegram= form[3].value;
-    teacherOBJ.age = form[4].value;
-    teacherOBJ.rating = form[5].value;
-    teacherOBJ.email = form[6].value;
-    teacherOBJ.linkedin = form[7].value;
-   console.log(teacherOBJ);
-   
-    addteacher(teacherOBJ);
-    sellected = null;
-outerModal.classList.add("hidden")
-})
-async function daleteTeacher(id){
-    try{
-        await axios.delete(`https://6925beea82b59600d725044c.mockapi.io/teachers/${id}`);
-        getData(teacherCards); 
-    }catch(err){
+    let TeachersObj = {}
+    TeachersObj.name = fors[0].value;
+    TeachersObj.age = fors[1].value;
+    TeachersObj.Experience = fors[2].value;
+    TeachersObj.Phone = fors[3].value;
+    TeachersObj.Email = fors[4].value;
+    TeachersObj.Telegram = fors[5].value;
+    TeachersObj.LinkedIn = fors[6].value;
+    TeachersObj.specialty = fors[7].value;
+    TeachersObj.Rating = fors[8].value;
+    TeachersObj.avatar = fors[9].value;
+    TeachersObj.Gender = fors[10].value;
+
+    addTeacher(TeachersObj)
+
+});
+
+async function delTechBtn(id) {
+    console.log(id);
+
+    try {
+        await axios.delete(` https://6923dd633ad095fb8471ce98.mockapi.io/Teachers/${id}`);
+        getdadt(Teachersda, page, soetNameValue, searchValue);
+    } catch (err) {
         console.log(err);
-        
+
     }
+
+}
+async function editTeacher(id) {
+    outerModal.classList.remove("hidden");
+    selected = id
+    try {
+        let editTe = await axios.get(` https://6923dd633ad095fb8471ce98.mockapi.io/Teachers/${id}`);
+        console.log(editTe.data);
+        fors[0].value = editTe.data.name
+        fors[1].value = editTe.data.age
+        fors[2].value = editTe.data.Experience
+        fors[3].value = editTe.data.Phone
+        fors[4].value = editTe.data.Email
+        fors[5].value = editTe.data.Telegram
+        fors[6].value = editTe.data.LinkedIn
+        fors[7].value = editTe.data.specialty
+        fors[8].value = editTe.data.Rating
+        fors[9].value = editTe.data.avatar
+        fors[10].value = editTe.data.Gender
+    } catch (err) {
+        console.log(err);
+
+    }
+
 }
