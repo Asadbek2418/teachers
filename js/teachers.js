@@ -38,13 +38,13 @@ async function getdadt(content, page, soetNameValue, searchValue) {
 
 
     try {
-        let res = await axios.get(`https://6923dd633ad095fb8471ce98.mockapi.io/Teachers?page=${page}&limit=6&${soetNameValue === "default" ? "" : `sortBy=name&order=${soetNameValue}`}&search=${searchValue} `);
+        let res = await axios.get(`https://6925beea82b59600d725044c.mockapi.io/teachers?page=${page}&limit=6&${soetNameValue === "default" ? "" : `sortBy=name&order=${soetNameValue}`}&search=${searchValue} `);
         content.innerHTML = "";
         res.data.map((el) => {
             content.innerHTML += `
         <div data-slot="card"
-            class="text-card-foreground flex flex-col gap-6 rounded-xl border p-6 cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 group">
-                                                <a href="./Teacher.html?teacherId=${el.id}"> <div class="flex flex-col items-center text-center mb-4"><span
+            class="text-card-foreground max-w-[300px] w-full flex flex-col gap-6 rounded-xl border p-6 cursor-pointer transition-all duration-300 hover:-translate-y-1 transition shadow-xl bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 group">
+                                                <a href="./teachers-students.html?teacherId=${el.id}"> <div class="flex flex-col items-center text-center mb-4"><span
                                                         data-slot="avatar"
                                                         class="relative flex size-10 shrink-0 overflow-hidden rounded-full h-20 w-20 mb-3 ring-4 ring-blue-100 dark:ring-blue-900"><img
                                                             data-slot="avatar-image" class="aspect-square size-full"
@@ -175,7 +175,7 @@ async function getdadt(content, page, soetNameValue, searchValue) {
                                             </div> 
         ` ;
         })
-        let resss = await axios.get("https://6923dd633ad095fb8471ce98.mockapi.io/Teachers");
+        let resss = await axios.get("https://6925beea82b59600d725044c.mockapi.io/teachers");
         let pejis = Math.ceil(resss.data.length / 6)
         pagin.innerHTML = ``
         pagin.innerHTML += `<button type="button" onClick=changePage(${page - 1})  class="inline-flex items-center justify-center text-body bg-neutral-primary-soft border border-default hover:bg-neutral-secondary-medium hover:text-heading focus:ring-3 focus:ring-neutral-tertiary-soft font-medium leading-5 rounded-s-base text-sm w-9 h-9 focus:outline-none rounded-l-lg">
@@ -201,7 +201,7 @@ async function getdadt(content, page, soetNameValue, searchValue) {
 }
 getdadt(Teachersda, page, soetNameValue, searchValue)
 async function changePage(i) {
-    let resss = await axios.get("https://6923dd633ad095fb8471ce98.mockapi.io/Teachers");
+    let resss = await axios.get("https://6925beea82b59600d725044c.mockapi.io/teachers");
     let pejis = Math.ceil(resss.data.length / 6);
 
 
@@ -218,11 +218,11 @@ async function changePage(i) {
 async function addTeacher(params) {
     try {
         if (selected) {
-            await axios.put(`https://6923dd633ad095fb8471ce98.mockapi.io/Teachers/${selected}`, params,
+            await axios.put(`https://6925beea82b59600d725044c.mockapi.io/teachers/${selected}`, params,
             );
 
         } else {
-            await axios.post("https://6923dd633ad095fb8471ce98.mockapi.io/Teachers", params,
+            await axios.post("https://6925beea82b59600d725044c.mockapi.io/teachers", params,
             );
 
         }
@@ -259,7 +259,7 @@ async function delTechBtn(id) {
     console.log(id);
 
     try {
-        await axios.delete(` https://6923dd633ad095fb8471ce98.mockapi.io/Teachers/${id}`);
+        await axios.delete(` https://6925beea82b59600d725044c.mockapi.io/teachers/${id}`);
         getdadt(Teachersda, page, soetNameValue, searchValue);
     } catch (err) {
         console.log(err);
@@ -271,7 +271,7 @@ async function editTeacher(id) {
     outerModal.classList.remove("hidden");
     selected = id
     try {
-        let editTe = await axios.get(` https://6923dd633ad095fb8471ce98.mockapi.io/Teachers/${id}`);
+        let editTe = await axios.get(`https://6925beea82b59600d725044c.mockapi.io/teachers/${id}`);
         console.log(editTe.data);
         fors[0].value = editTe.data.name
         fors[1].value = editTe.data.age

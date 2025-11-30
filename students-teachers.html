@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+   
+    <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar"
+        type="button"
+        class="text-heading bg-transparent box-border border border-transparent hover:bg-neutral-secondary-medium focus:ring-4 focus:ring-neutral-tertiary font-medium leading-5 rounded-base ms-3 mt-3 text-sm p-2 focus:outline-none inline-flex sm:hidden">
+        <span class="sr-only">Open sidebar</span>
+        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+            viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
+        </svg>
+    </button>
+
+
+    <aside id="logo-sidebar"
+        class="fixed top-0 left-0 z-50 w-64 h-full bg-white transition-transform border border-gray-300 -translate-x-full sm:translate-x-0"
+        aria-label="Sidebar">
+        <div class="h-full px-3 py-4 overflow-y-auto bg-neutral-primary-soft border-e border-default">
+            <div class="flex items-center gap-3 mb-6">
+                <div
+                    class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 to-pink-500 text-white flex items-center justify-center font-bold">
+                    EA</div>
+                <div>
+                    <h1 class="font-semibold text-lg">EduAdmin</h1>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">School Management</p>
+                </div>
+            </div>
+            <ul class="space-y-2 font-medium">
+                <li>
+                    <a href="./index.html"
+                        class="flex items-center px-4 py-3 text-body rounded-lg hover:bg-gray-200  hover:text-fg-brand group">
+                        <svg class="w-5 h-5 transition duration-75 group-hover:text-fg-brand" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z" />
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13.5 3c-.169 0-.334.014-.5.025V11h7.975c.011-.166.025-.331.025-.5A7.5 7.5 0 0 0 13.5 3Z" />
+                        </svg>
+
+                        <span class="ms-3">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="teachersLink2" href="./teachers.html"
+                        class="flex items-center gap-3 px-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow py-3 rounded-lg  hover:bg-gray-200">
+                        👨‍🏫 Teachers
+                    </a>
+                </li>
+                <li>
+                    <a href="./students.html"
+                        class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">
+                        🎓 Students
+                    </a>
+                </li>
+                <li>
+                    <a href="./settings.html"
+                        class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">
+                        ⚙ Settings
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </aside>
+
+    <header
+        class="fixed top-0 left-[40px] w-full xl:ml-[236px] lg:ml-[236px] mg:ml-[236px] sm:ml-[236px] px-[30px] py-[15px] bg-white z-1">
+        <h1 class="text-2xl font-semibold">School Management System</h1>
+    </header>
+
+<!-- PAGE WRAPPER -->
+ <main id="cards3" class="sm:pl-[300px] px-[40px] pt-[80px]">
+<div id="cards3" class="w-full flex justify-center px-4">
+    <div class="w-full max-w-6xl py-6">
+
+        <!-- GRID -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <!-- LEFT CARD -->
+            <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center max-w-md w-full mx-auto">
+
+                <img src="data:image/png;base64,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"
+                    class="w-32 h-32 rounded-full border-4 border-white shadow" />
+
+                <h2 class="mt-4 text-xl font-semibold">Abraham Frami</h2>
+
+                <span class="mt-2 text-sm px-3 py-1 bg-blue-100 text-blue-600 rounded-full">
+                    group 16
+                </span>
+
+                <div class="w-full mt-6 space-y-4 text-gray-600">
+                    <div class="flex justify-between">
+                        <span>Age</span><span class="font-medium text-gray-900">14 years</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Gender</span><span class="font-medium text-gray-900">Male</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Rating</span>
+                        <span class="font-medium text-yellow-500 flex items-center gap-1">
+                            ⭐ 79
+                        </span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Coins</span>
+                        <span class="font-medium text-yellow-600 flex items-center gap-1">
+                            🪙 66
+                        </span>
+                    </div>
+                </div>
+
+                <button class="mt-6 text-blue-600 hover:underline flex items-center gap-2">
+                    ✏️ Edit Profile
+                </button>
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="lg:col-span-2 bg-white rounded-xl shadow p-6 max-w-3xl w-full mx-auto">
+
+                <!-- ROW 1: Phone + Email -->
+                <h3 class="text-lg font-semibold mb-4">Contact Info</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+
+                    <!-- Phone -->
+                    <div class="bg-gray-50 p-4 rounded-xl flex items-center gap-4">
+                        <div class="text-blue-500 text-2xl">📞</div>
+                        <div>
+                            <p class="text-gray-500 text-sm">Phone</p>
+                            <p class="font-medium">446-984-3432 x9651</p>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="bg-gray-50 p-4 rounded-xl flex items-center gap-4">
+                        <div class="text-green-500 text-2xl">✉️</div>
+                        <div>
+                            <p class="text-gray-500 text-sm">Email</p>
+                            <p class="font-medium">Gino6@gmail.com</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ROW 2: Telegram + LinkedIn -->
+                <h3 class="text-lg font-semibold mb-4">Links</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <!-- Telegram -->
+                    <div class="bg-gray-50 p-4 rounded-xl flex items-center gap-4">
+                        <div class="text-blue-500 text-2xl">📨</div>
+                        <div>
+                            <p class="text-gray-500 text-sm">Telegram</p>
+                            <p class="font-medium">Telegram 16</p>
+                        </div>
+                    </div>
+
+                    <!-- LinkedIn -->
+                    <div class="bg-gray-50 p-4 rounded-xl flex items-center gap-4">
+                        <div class="text-blue-500 text-2xl">🔗</div>
+                        <div>
+                            <p class="text-gray-500 text-sm">LinkedIn</p>
+                            <a href="#" class="font-medium text-blue-600 hover:underline">
+                                https://sunny-tail.org/
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+</main>
+
+    
+    <script src="./js/teachers.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
+
+</body>
+
+</html>
+
+
+

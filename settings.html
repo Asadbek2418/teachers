@@ -79,7 +79,127 @@
             <h1 class="text-2xl font-semibold">School Management System</h1>
         </header>
         <!-- MAIN CONTENT -->
-        <h1 class="ml-[500px]">teacher</h1>
+    <main class=" py-[40px] sm:pl-[300px] px-[40px] pt-[80px]">
+        <div>
+            <div class="mb-8">
+                <h2 class="text-black mb-2">Settings</h2>
+                <p class="text-gray-600 text-gray-400">Manage your application settings</p>
+            </div>
+            <div class="space-y-6 max-w-2xl">
+                <div class=" flex flex-col gap-6 rounded-xl border bg-white border-gray-200 ">
+                    <div
+                        class=" grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 pt-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6">
+                        <h4 class="text-[14px] text-black">Profile Settings</h4>
+                        <p class="text-[gray] text-[12px]">Update your profile information
+                        </p>
+                    </div>
+                    <div class="px-6  space-y-4">
+                        <div class="space-y-2">
+                            <label
+                                class="flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"
+                                for="name">Name</label><input
+                                class="file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base transition-[color,box-shadow] outline-none  bg-white "
+                                id="name" placeholder="Your name">
+                        </div>
+                        <div class="space-y-2"><label
+                                class="flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"
+                                for="email">Email</label><input type="email"
+                                class="file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base transition-[color,box-shadow] outline-none  bg-white "
+                                id="email" placeholder="your.email@example.com"></div>
+                        <button
+                            class="items-center justify-center gap-2  rounded-md text-sm  transition-all  text-[white]  bg-[black] w-[200px] h-[40px]  px-4 py-2 mb-[20px] ">
+                            Save Changes</button>
+                    </div>
+                </div>
+                <div class="text-card-foreground flex flex-col gap-6 rounded-xl border bg-white  border-gray-200 ">
+                    <div class=" grid auto-rows-min  items-start gap-1.5 px-6 pt-6 ">
+                        <h4 class="leading-none text-gray-900 ">Notifications</h4>
+                        <p class="text-gray-500">Manage your notification preferences</p>
+                    </div>
+                    <div class="px-6  space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-black-200 ">Email Notifications</p>
+                                <p class="text-sm text-gray-500 ">Receive email updates about your account
+                                </p>
+                            </div>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" value="" class="sr-only peer" checked>
+                                <div class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4   rounded-full peer peer-checked:after:translate-x-full 
+                                                    rtl:peer-checked:after:-translate-x-full peer-checked:after:border-gray-200 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all 
+                                                    peer-checked:bg-black">
+                                </div>
+                            </label>
+    
+    
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-900">Push Notifications</p>
+                                <p class="text-sm text-gray-500 ">Receive push notifications on your
+                                    devices</p>
+                            </div>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" value="" class="sr-only peer" checked>
+                                <div class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4   rounded-full peer peer-checked:after:translate-x-full 
+                                                                                            rtl:peer-checked:after:-translate-x-full peer-checked:after:border-gray-200 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all 
+                                                                                            peer-checked:bg-black">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="flex items-center justify-between mb-[20px]">
+                            <div>
+                                <p class="text-gray-900 ">Weekly Reports</p>
+                                <p class="text-sm text-gray-500 ">Get weekly reports about school activities
+                                </p>
+                            </div>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" value="" class="sr-only peer" checked>
+                                <div class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4   rounded-full peer peer-checked:after:translate-x-full 
+                                                                                            rtl:peer-checked:after:-translate-x-full peer-checked:after:border-gray-200 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all 
+                                                                                            peer-checked:bg-black">
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-6 rounded-xl border bg-white  border-gray-200 ">
+                    <div class="grid auto-rows-min items-start gap-1.5 px-6 pt-6 ">
+                        <h4 class="leading-none text-gray-900 ">Privacy</h4>
+                        <p class="text-gray-500">Manage your privacy settings</p>
+                    </div>
+                    <div class="px-6 ">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-900 ">Public Profile</p>
+                                <p class="text-sm text-gray-500 ">Make your profile visible to others </p>
+                            </div>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" value="" class="sr-only peer" checked>
+                                <div class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4   rounded-full peer peer-checked:after:translate-x-full 
+                                                                                            rtl:peer-checked:after:-translate-x-full peer-checked:after:border-gray-200 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all 
+                                                                                            peer-checked:bg-black">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="flex items-center justify-between mb-[20px]">
+                            <div>
+                                <p class="text-gray-900 ">Show Activity Status</p>
+                                <p class="text-sm text-gray-500 ">Let others see when you're online </p>
+                            </div>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" value="" class="sr-only peer" checked>
+                                <div class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4   rounded-full peer peer-checked:after:translate-x-full 
+                                                                                            rtl:peer-checked:after:-translate-x-full peer-checked:after:border-gray-200 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all 
+                                                                                            peer-checked:bg-black">
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
